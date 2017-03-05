@@ -16,48 +16,50 @@
           <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
           <a class="small" href="javascript:void(0);">+</a>
           <div id="jump_wrapper">
-          <div id="jump_page">
-            
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
               
-              <a class="source" href="basicAI.html">
-                basicAI.coffee
-              </a>
-            
+                
+                <a class="source" href="basicAI.html">
+                  basicAI.coffee
+                </a>
               
-              <a class="source" href="cards.html">
-                cards.coffee
-              </a>
-            
+                
+                <a class="source" href="cards.html">
+                  cards.coffee
+                </a>
               
-              <a class="source" href="compileStrategies.html">
-                compileStrategies.coffee
-              </a>
-            
+                
+                <a class="source" href="compileStrategies.html">
+                  compileStrategies.coffee
+                </a>
               
-              <a class="source" href="gameState.html">
-                gameState.coffee
-              </a>
-            
+                
+                <a class="source" href="gameState.html">
+                  gameState.coffee
+                </a>
               
-              <a class="source" href="heuristics.html">
-                heuristics.coffee
-              </a>
-            
+                
+                <a class="source" href="heuristics.html">
+                  heuristics.coffee
+                </a>
               
-              <a class="source" href="play.html">
-                play.coffee
-              </a>
-            
+                
+                <a class="source" href="play.html">
+                  play.coffee
+                </a>
               
-              <a class="source" href="playWeb.html">
-                playWeb.coffee
-              </a>
-            
+                
+                <a class="source" href="playWeb.html">
+                  playWeb.coffee
+                </a>
               
-              <a class="source" href="testSimulation.html">
-                testSimulation.coffee
-              </a>
-            
+                
+                <a class="source" href="testSimulation.html">
+                  testSimulation.coffee
+                </a>
+              
+            </div>
           </div>
         </li>
       </ul>
@@ -91,8 +93,8 @@ not incredibly wrong.</p>
 <p>The +’s have no effect on the values, they just make some of them sound more
 natural.</p>
 <p>Victory cards are modeled as cards that replace their action and do nothing
-(this isn’t accurate, but the things that would care about the difference —
-like Libraries — aren’t accurate either.)</p>
+(this isn’t accurate, but the things that would care about the difference –
+like Libraries – aren’t accurate either.)</p>
 <p>If they appeared as the default -1 action, it would imply that there was some
 benefit to having +actions with victory cards.</p>
 <p>“Churn” is how many more cards you get to see than you get to keep. (Think of
@@ -104,583 +106,583 @@ to describe without describing what the card actually does in a situation.</p>
             
             <div class="content"><div class='highlight'><pre>
 heuristics = {
-  <span class="hljs-attribute">default</span>: {
-    <span class="hljs-attribute">actions</span>: -<span class="hljs-number">1</span>   <span class="hljs-comment"># _difference_ in number of actions</span>
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">0</span>     <span class="hljs-comment"># how much it hurts your opponents (negative means it helps)</span>
-    <span class="hljs-attribute">nextTurn</span>: <span class="hljs-number">0</span>   <span class="hljs-comment"># estimated benefit of a duration or top-decker</span>
-    <span class="hljs-attribute">buys</span>: <span class="hljs-number">0</span>       <span class="hljs-comment"># number of +buys</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>     <span class="hljs-comment"># _difference_ in cards in hand</span>
-    <span class="hljs-attribute">coins</span>: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of coins you get</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0</span>       <span class="hljs-comment"># number of (good) cards you gain</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of cards you can trash</span>
-    <span class="hljs-attribute">chips</span>: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of VP chips</span>
+  default: {
+    actions: <span class="hljs-number">-1</span>   <span class="hljs-comment"># _difference_ in number of actions</span>
+    attack: <span class="hljs-number">0</span>     <span class="hljs-comment"># how much it hurts your opponents (negative means it helps)</span>
+    nextTurn: <span class="hljs-number">0</span>   <span class="hljs-comment"># estimated benefit of a duration or top-decker</span>
+    buys: <span class="hljs-number">0</span>       <span class="hljs-comment"># number of +buys</span>
+    cards: <span class="hljs-number">-1</span>     <span class="hljs-comment"># _difference_ in cards in hand</span>
+    coins: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of coins you get</span>
+    gain: <span class="hljs-number">0</span>       <span class="hljs-comment"># number of (good) cards you gain</span>
+    trash: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of cards you can trash</span>
+    chips: <span class="hljs-number">0</span>      <span class="hljs-comment"># number of VP chips</span>
   }
-  <span class="hljs-attribute">Adventurer</span>: {
-    <span class="hljs-attribute">actions</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Adventurer: {
+    actions: <span class="hljs-number">-1</span>
+    cards: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Alchemist</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">1</span>
+  Alchemist: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Ambassador</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1.5</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2.5</span>
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
+  Ambassador: {
+    trash: <span class="hljs-number">1.5</span>
+    cards: <span class="hljs-number">-2.5</span>
+    attack: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Apothecary</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.5</span>
+  Apothecary: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Apprentice</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
+  Apprentice: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">2</span>
+    trash: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Bag of Gold"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
+    nextTurn: +<span class="hljs-number">2</span>
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Bank</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: <span class="hljs-number">4</span>
+  Bank: {
+    actions: <span class="hljs-number">0</span>
+    coins: <span class="hljs-number">4</span>
   }
-  <span class="hljs-attribute">Baron</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.1</span>
+  Baron: {
+    coins: +<span class="hljs-number">3</span>
+    buys: +<span class="hljs-number">1</span>
+    gain: <span class="hljs-number">0.1</span>
   }
-  <span class="hljs-attribute">Bazaar</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
+  Bazaar: {
+    actions: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Bishop</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">chips</span>: +<span class="hljs-number">2</span>
+  Bishop: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    coins: +<span class="hljs-number">1</span>
+    chips: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Black Market"</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">buys</span>: <span class="hljs-number">0.5</span>   <span class="hljs-comment"># you might use it as a buy</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.3</span>   <span class="hljs-comment"># you might benefit from it</span>
+    coins: +<span class="hljs-number">2</span>
+    buys: <span class="hljs-number">0.5</span>   <span class="hljs-comment"># you might use it as a buy</span>
+    gain: <span class="hljs-number">0.3</span>   <span class="hljs-comment"># you might benefit from it</span>
   }
-  <span class="hljs-attribute">Bridge</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Bridge: {
+    coins: +<span class="hljs-number">3</span>
+    buys: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Bureaucrat</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.5</span>
+  Bureaucrat: {
+    attack: <span class="hljs-number">0.5</span>
+    gain: <span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Caravan</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">1</span>
+  Caravan: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    nextTurn: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Cellar</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">3</span>
+  Cellar: {
+    actions: <span class="hljs-number">0</span>
+    churn: <span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Chancellor</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Chancellor: {
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Chapel</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">4</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">4</span>
+  Chapel: {
+    trash: <span class="hljs-number">4</span>
+    cards: <span class="hljs-number">-4</span>
   }
-  <span class="hljs-attribute">City</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">0.1</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">0.1</span>
+  City: {
+    actions: +<span class="hljs-number">1</span>
+    cards: +<span class="hljs-number">0.2</span>
+    coins: +<span class="hljs-number">0.1</span>
+    buys: +<span class="hljs-number">0.1</span>
   }
-  <span class="hljs-attribute">Colony</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Conspirator</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">actions</span>: -<span class="hljs-number">0.6</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">0.6</span>
+  Colony: {actions: <span class="hljs-number">0</span>}
+  Conspirator: {
+    coins: +<span class="hljs-number">1</span>
+    actions: <span class="hljs-number">-0.6</span>
+    cards: <span class="hljs-number">-0.6</span>
   }
-  <span class="hljs-attribute">Contraband</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">attack</span>: -<span class="hljs-number">1</span>
+  Contraband: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">3</span>
+    buys: +<span class="hljs-number">1</span>
+    attack: <span class="hljs-number">-1</span>
   }
-  <span class="hljs-attribute">Copper</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
+  Copper: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Coppersmith</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Coppersmith: {
+    coins: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Council Room"</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">3</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">attack</span>: -<span class="hljs-number">1</span>
+    cards: +<span class="hljs-number">3</span>
+    buys: +<span class="hljs-number">1</span>
+    attack: <span class="hljs-number">-1</span>
   }
   <span class="hljs-string">"Counting House"</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">3</span>
+    cards: +<span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Courtyard</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">1</span>
+  Courtyard: {
+    cards: +<span class="hljs-number">1</span>
+    churn: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Curse</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Cutpurse</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Curse: {actions: <span class="hljs-number">0</span>}
+  Cutpurse: {
+    attack: <span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Diadem</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
+  Diadem: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Duchy</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Duke</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Embargo</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Duchy: {actions: <span class="hljs-number">0</span>}
+  Duke: {actions: <span class="hljs-number">0</span>}
+  Embargo: {
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Envoy</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">3</span>
+  Envoy: {
+    cards: +<span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Estate</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Expand</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Estate: {actions: <span class="hljs-number">0</span>}
+  Expand: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Explorer</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+  Explorer: {
+    gain: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Fairgrounds</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Familiar</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
+  Fairgrounds: {actions: <span class="hljs-number">0</span>}
+  Familiar: {
+    attack: <span class="hljs-number">2</span>
+    cards: <span class="hljs-number">0</span>
+    actions: <span class="hljs-number">0</span>
   }
   <span class="hljs-string">"Farming Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+    actions: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Feast</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Feast: {
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Festival</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Festival: {
+    actions: +<span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">2</span>
+    buys: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Fishing Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">2</span>
+    actions: +<span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Followers</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">4</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Followers: {
+    attack: <span class="hljs-number">4</span>
+    cards: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Forge</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">3</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">4</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Forge: {
+    trash: <span class="hljs-number">3</span>
+    cards: <span class="hljs-number">-4</span>
+    gain: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Fortune Teller"</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+    attack: <span class="hljs-number">0.5</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Goons</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">chips</span>: +<span class="hljs-number">2</span>
+  Goons: {
+    attack: <span class="hljs-number">2.5</span>
+    coins: +<span class="hljs-number">2</span>
+    chips: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Grand Market"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">2</span>
+    buys: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Great Hall"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Hamlet</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
+  Hamlet: {
+    actions: +<span class="hljs-number">0.5</span>
+    buys: +<span class="hljs-number">0.5</span>
+    cards: <span class="hljs-number">-1</span>
   }
-  <span class="hljs-attribute">Harem</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Harem: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Herbalist</span>: {
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.5</span>
+  Herbalist: {
+    buys: +<span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Hoard</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Hoard: {
+    actions: <span class="hljs-number">0</span>
+    gain: <span class="hljs-number">0.5</span>
+    coins: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Horn of Plenty"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
+    gain: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Horse Traders"</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">3</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-3</span>
+    coins: +<span class="hljs-number">3</span>
+    buys: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Hunting Party"</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Ironworks</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">0.4</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">0.4</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.2</span>
+  Ironworks: {
+    gain: <span class="hljs-number">1</span>
+    actions: +<span class="hljs-number">0.4</span>
+    coins: +<span class="hljs-number">0.4</span>
+    cards: +<span class="hljs-number">0.2</span>
   }
-  <span class="hljs-attribute">Island</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
+  Island: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
   }
-  <span class="hljs-attribute">Jester</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.5</span>
+  Jester: {
+    attack: <span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">2</span>
+    gain: <span class="hljs-number">0.5</span>
   }
   <span class="hljs-string">"King's Court"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">2</span>
+    actions: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Laboratory</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Laboratory: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Library</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">2</span>
+  Library: {
+    cards: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Lighthouse</span>: {
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">1.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
+  Lighthouse: {
+    nextTurn: +<span class="hljs-number">1.5</span>
+    coins: +<span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Loan</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
+  Loan: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">-1</span>
+    trash: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Lookout</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
+  Lookout: {
+    cards: <span class="hljs-number">-1</span>
+    trash: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Market</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Market: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
+    buys: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Masquerade</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
+  Masquerade: {
+    cards: +<span class="hljs-number">1</span>
+    trash: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Menagerie</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Menagerie: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Merchant Ship"</span>: {
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+    nextTurn: +<span class="hljs-number">2</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Militia</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Militia: {
+    attack: <span class="hljs-number">2</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Mine</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
+  Mine: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-1</span>
+    gain: <span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Mining Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+    actions: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Minion</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1.5</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">1.5</span>
-    <span class="hljs-attribute">coins</span>: <span class="hljs-number">1</span>
+  Minion: {
+    attack: <span class="hljs-number">0.5</span>
+    cards: +<span class="hljs-number">1.5</span>
+    churn: <span class="hljs-number">1.5</span>
+    coins: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Mint</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Mint: {
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Moat</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Moat: {
+    cards: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Moneylender</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Moneylender: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Monument</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Monument: {
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Mountebank</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Mountebank: {
+    attack: <span class="hljs-number">2</span>
+    coins: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Native Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.5</span>
+    actions: +<span class="hljs-number">1</span>
+    cards: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Navigator</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.5</span>
+  Navigator: {
+    coins: +<span class="hljs-number">2</span>
+    nextTurn: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Nobles</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.5</span>
+  Nobles: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Outpost</span>: {
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.5</span>
+  Outpost: {
+    nextTurn: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Pawn</span>: {
-    <span class="hljs-attribute">actions</span>: -<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">0.5</span>
+  Pawn: {
+    actions: <span class="hljs-number">-0.5</span>
+    cards: <span class="hljs-number">-0.5</span>
+    coins: +<span class="hljs-number">0.5</span>
+    buys: +<span class="hljs-number">0.5</span>
   }
   <span class="hljs-string">"Pearl Diver"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Peddler</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
+  Peddler: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Philosopher's Stone"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">4</span>
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">4</span>
   }
   <span class="hljs-string">"Pirate Ship"</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
+    attack: <span class="hljs-number">0.5</span>
+    coins: +<span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Platinum</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">5</span>
+  Platinum: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">5</span>
   }
-  <span class="hljs-attribute">Possession</span>: {
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">5</span>
+  Possession: {
+    nextTurn: +<span class="hljs-number">5</span>
   }
-  <span class="hljs-attribute">Potion</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">potions</span>: +<span class="hljs-number">1</span>
+  Potion: {
+    actions: <span class="hljs-number">0</span>
+    potions: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Princess</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">4</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Princess: {
+    coins: +<span class="hljs-number">4</span>
+    buys: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Province</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
-  <span class="hljs-attribute">Quarry</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">3</span>
+  Province: {actions: <span class="hljs-number">0</span>}
+  Quarry: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Rabble</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">2</span>
+  Rabble: {
+    attack: <span class="hljs-number">1</span>
+    cards: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Remake</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">3</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">2</span>
+  Remake: {
+    trash: <span class="hljs-number">2</span>
+    cards: <span class="hljs-number">-3</span>
+    gain: <span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Remodel</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Remodel: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    gain: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Royal Seal"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.5</span>
+    actions: <span class="hljs-number">0</span>
+    coins: <span class="hljs-number">2</span>
+    nextTurn: +<span class="hljs-number">0.5</span>
   }
-  <span class="hljs-attribute">Saboteur</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2.5</span>
+  Saboteur: {
+    attack: <span class="hljs-number">2.5</span>
   }
-  <span class="hljs-attribute">Salvager</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Salvager: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    coins: +<span class="hljs-number">2</span>
+    buys: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Scout</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.5</span>
+  Scout: {
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">0.5</span>
   }
   <span class="hljs-string">"Scrying Pool"</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">1</span>
+    attack: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Sea Hag"</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">3</span>
+    attack: <span class="hljs-number">3</span>
   }
   <span class="hljs-string">"Secret Chamber"</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">3</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+    cards: <span class="hljs-number">-3</span>
+    coins: +<span class="hljs-number">2</span>
   }
   <span class="hljs-string">"Shanty Town"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
+    actions: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Silver</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Silver: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Smithy</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">2</span>
+  Smithy: {
+    cards: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Smugglers</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Smugglers: {
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Spy</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.2</span>
+  Spy: {
+    attack: <span class="hljs-number">1</span>
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    nextTurn: +<span class="hljs-number">0.2</span>
   }
-  <span class="hljs-attribute">Stash</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Stash: {
+    actions: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Steward</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">0.5</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
+  Steward: {
+    trash: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-0.5</span>
+    coins: +<span class="hljs-number">0.5</span>
+    cards: <span class="hljs-number">-2</span>
   }
-  <span class="hljs-attribute">Swindler</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">1.5</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
+  Swindler: {
+    attack: <span class="hljs-number">1.5</span>
+    coins: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Tactician</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">5</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">6</span>
+  Tactician: {
+    cards: <span class="hljs-number">-5</span>
+    nextTurn: +<span class="hljs-number">6</span>
   }
-  <span class="hljs-attribute">Talisman</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: <span class="hljs-number">1</span>
+  Talisman: {
+    actions: <span class="hljs-number">0</span>
+    coins: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Thief</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">0.5</span>
+  Thief: {
+    gain: <span class="hljs-number">0.5</span>
   }
   <span class="hljs-string">"Throne Room"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
+    actions: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Torturer</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">2</span>
+  Torturer: {
+    attack: <span class="hljs-number">2</span>
+    cards: +<span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Tournament</span>: {
+  Tournament: {
   }
   <span class="hljs-string">"Trade Route"</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
+    trash: <span class="hljs-number">1</span>
+    coins: +<span class="hljs-number">1</span>
+    buys: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Trading Post"</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
+    trash: <span class="hljs-number">2</span>
+    cards: <span class="hljs-number">-2</span>
   }
-  <span class="hljs-attribute">Transmute</span>: {
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">2</span>
+  Transmute: {
+    trash: <span class="hljs-number">1</span>
+    gain: <span class="hljs-number">1</span>
+    cards: <span class="hljs-number">-2</span>
   }
   <span class="hljs-string">"Treasure Map"</span>: {}
-  <span class="hljs-attribute">Treasury</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">1</span>
+  Treasury: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Tribute</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">1</span>
+  Tribute: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">0</span>
+    coins: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Trusty Steed"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">0.7</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.7</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">0.6</span>
+    actions: +<span class="hljs-number">0.7</span>
+    cards: +<span class="hljs-number">0.7</span>
+    coins: +<span class="hljs-number">0.6</span>
   }
-  <span class="hljs-attribute">University</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  University: {
+    actions: +<span class="hljs-number">1</span>
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Upgrade</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">trash</span>: <span class="hljs-number">1</span>
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Upgrade: {
+    actions: <span class="hljs-number">0</span>
+    cards: <span class="hljs-number">-1</span>
+    trash: <span class="hljs-number">1</span>
+    gain: <span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Vault</span>: {
-    <span class="hljs-attribute">cards</span>: -<span class="hljs-number">1</span>
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">2</span>
+  Vault: {
+    cards: <span class="hljs-number">-1</span>
+    coins: +<span class="hljs-number">2</span>
+    churn: <span class="hljs-number">2</span>
   }
-  <span class="hljs-attribute">Venture</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2.5</span>
+  Venture: {
+    coins: +<span class="hljs-number">2.5</span>
   }
-  <span class="hljs-attribute">Village</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
+  Village: {
+    actions: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Vineyard</span>: {<span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>}
+  Vineyard: {actions: <span class="hljs-number">0</span>}
   <span class="hljs-string">"Walled Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">0.3</span>
+    actions: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">0.3</span>
   }
-  <span class="hljs-attribute">Warehouse</span>: {
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">3</span>
+  Warehouse: {
+    actions: <span class="hljs-number">0</span>
+    churn: <span class="hljs-number">3</span>
   }
-  <span class="hljs-attribute">Watchtower</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1.5</span>
+  Watchtower: {
+    cards: +<span class="hljs-number">1.5</span>
   }
-  <span class="hljs-attribute">Wharf</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
-    <span class="hljs-attribute">nextTurn</span>: +<span class="hljs-number">3</span>
+  Wharf: {
+    cards: +<span class="hljs-number">1</span>
+    buys: +<span class="hljs-number">1</span>
+    nextTurn: +<span class="hljs-number">3</span>
   }
   <span class="hljs-string">"Wishing Well"</span>: {
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">0.3</span>
-    <span class="hljs-attribute">actions</span>: <span class="hljs-number">0</span>
+    cards: +<span class="hljs-number">0.3</span>
+    actions: <span class="hljs-number">0</span>
   }
-  <span class="hljs-attribute">Witch</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">3</span>
-    <span class="hljs-attribute">cards</span>: +<span class="hljs-number">1</span>
+  Witch: {
+    attack: <span class="hljs-number">3</span>
+    cards: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Woodcutter</span>: {
-    <span class="hljs-attribute">coins</span>: +<span class="hljs-number">2</span>
-    <span class="hljs-attribute">buys</span>: +<span class="hljs-number">1</span>
+  Woodcutter: {
+    coins: +<span class="hljs-number">2</span>
+    buys: +<span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Worker's Village"</span>: {
-    <span class="hljs-attribute">actions</span>: +<span class="hljs-number">1</span>
+    actions: +<span class="hljs-number">1</span>
   }
-  <span class="hljs-attribute">Workshop</span>: {
-    <span class="hljs-attribute">gain</span>: <span class="hljs-number">1</span>
+  Workshop: {
+    gain: <span class="hljs-number">1</span>
   }
   <span class="hljs-string">"Young Witch"</span>: {
-    <span class="hljs-attribute">attack</span>: <span class="hljs-number">2</span>
-    <span class="hljs-attribute">churn</span>: <span class="hljs-number">2</span>
+    attack: <span class="hljs-number">2</span>
+    churn: <span class="hljs-number">2</span>
   }
 }</pre></div></div>
             
