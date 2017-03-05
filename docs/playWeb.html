@@ -16,48 +16,50 @@
           <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
           <a class="small" href="javascript:void(0);">+</a>
           <div id="jump_wrapper">
-          <div id="jump_page">
-            
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
               
-              <a class="source" href="basicAI.html">
-                basicAI.coffee
-              </a>
-            
+                
+                <a class="source" href="basicAI.html">
+                  basicAI.coffee
+                </a>
               
-              <a class="source" href="cards.html">
-                cards.coffee
-              </a>
-            
+                
+                <a class="source" href="cards.html">
+                  cards.coffee
+                </a>
               
-              <a class="source" href="compileStrategies.html">
-                compileStrategies.coffee
-              </a>
-            
+                
+                <a class="source" href="compileStrategies.html">
+                  compileStrategies.coffee
+                </a>
               
-              <a class="source" href="gameState.html">
-                gameState.coffee
-              </a>
-            
+                
+                <a class="source" href="gameState.html">
+                  gameState.coffee
+                </a>
               
-              <a class="source" href="heuristics.html">
-                heuristics.coffee
-              </a>
-            
+                
+                <a class="source" href="heuristics.html">
+                  heuristics.coffee
+                </a>
               
-              <a class="source" href="play.html">
-                play.coffee
-              </a>
-            
+                
+                <a class="source" href="play.html">
+                  play.coffee
+                </a>
               
-              <a class="source" href="playWeb.html">
-                playWeb.coffee
-              </a>
-            
+                
+                <a class="source" href="playWeb.html">
+                  playWeb.coffee
+                </a>
               
-              <a class="source" href="testSimulation.html">
-                testSimulation.coffee
-              </a>
-            
+                
+                <a class="source" href="testSimulation.html">
+                  testSimulation.coffee
+                </a>
+              
+            </div>
           </div>
         </li>
       </ul>
@@ -84,13 +86,13 @@ other on the Web.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-<span class="hljs-function"><span class="hljs-title">compileStrategies</span> = <span class="hljs-params">(scripts, errorHandler)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-function">
+<span class="hljs-title">compileStrategies</span> = <span class="hljs-params">(scripts, errorHandler)</span> -&gt;</span>
   strategies = []
   usedNames = []
   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span>..scripts.length]
     <span class="hljs-keyword">try</span>
-      strategy = CoffeeScript.eval(scripts[i], {<span class="hljs-attribute">bare</span>: <span class="hljs-literal">yes</span>})
+      strategy = CoffeeScript.eval(scripts[i], {bare: <span class="hljs-literal">yes</span>})
       <span class="hljs-keyword">while</span> strategy.name <span class="hljs-keyword">in</span> usedNames
         strategy.name += <span class="hljs-string">"Clone"</span>
       usedNames.push(strategy.name)
@@ -98,15 +100,15 @@ other on the Web.</p>
     <span class="hljs-keyword">catch</span> e
       errorHandler(e)
       <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-  <span class="hljs-keyword">return</span> strategies
+  <span class="hljs-keyword">return</span> strategies<span class="hljs-function">
 
-<span class="hljs-function"><span class="hljs-title">makeStrategy</span> = <span class="hljs-params">(changes)</span> -&gt;</span>
+<span class="hljs-title">makeStrategy</span> = <span class="hljs-params">(changes)</span> -&gt;</span>
   ai = <span class="hljs-keyword">new</span> BasicAI()
   <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> changes
     ai[key] = value
-  ai
+  ai<span class="hljs-function">
 
-<span class="hljs-function"><span class="hljs-title">playGame</span> = <span class="hljs-params">(strategies, options, ret)</span> -&gt;</span>
+<span class="hljs-title">playGame</span> = <span class="hljs-params">(strategies, options, ret)</span> -&gt;</span>
   ais = (makeStrategy(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> strategies)</pre></div></div>
             
         </li>

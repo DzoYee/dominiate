@@ -16,48 +16,50 @@
           <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
           <a class="small" href="javascript:void(0);">+</a>
           <div id="jump_wrapper">
-          <div id="jump_page">
-            
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
               
-              <a class="source" href="basicAI.html">
-                basicAI.coffee
-              </a>
-            
+                
+                <a class="source" href="basicAI.html">
+                  basicAI.coffee
+                </a>
               
-              <a class="source" href="cards.html">
-                cards.coffee
-              </a>
-            
+                
+                <a class="source" href="cards.html">
+                  cards.coffee
+                </a>
               
-              <a class="source" href="compileStrategies.html">
-                compileStrategies.coffee
-              </a>
-            
+                
+                <a class="source" href="compileStrategies.html">
+                  compileStrategies.coffee
+                </a>
               
-              <a class="source" href="gameState.html">
-                gameState.coffee
-              </a>
-            
+                
+                <a class="source" href="gameState.html">
+                  gameState.coffee
+                </a>
               
-              <a class="source" href="heuristics.html">
-                heuristics.coffee
-              </a>
-            
+                
+                <a class="source" href="heuristics.html">
+                  heuristics.coffee
+                </a>
               
-              <a class="source" href="play.html">
-                play.coffee
-              </a>
-            
+                
+                <a class="source" href="play.html">
+                  play.coffee
+                </a>
               
-              <a class="source" href="playWeb.html">
-                playWeb.coffee
-              </a>
-            
+                
+                <a class="source" href="playWeb.html">
+                  playWeb.coffee
+                </a>
               
-              <a class="source" href="testSimulation.html">
-                testSimulation.coffee
-              </a>
-            
+                
+                <a class="source" href="testSimulation.html">
+                  testSimulation.coffee
+                </a>
+              
+            </div>
           </div>
         </li>
       </ul>
@@ -130,10 +132,10 @@ basicAI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'
   test.done()
 
 <span class="hljs-keyword">this</span>[<span class="hljs-string">'2-player smoke test'</span>] = <span class="hljs-function"><span class="hljs-params">(test)</span> -&gt;</span>
-  ais = (loadStrategy(<span class="hljs-string">'strategies/SillyAI.coffee'</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">1.</span><span class="hljs-number">.2</span>])
-  <span class="hljs-function"><span class="hljs-title">noLog</span> = <span class="hljs-params">(message)</span> -&gt;</span>
+  ais = (loadStrategy(<span class="hljs-string">'strategies/SillyAI.coffee'</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">1.</span><span class="hljs-number">.2</span>])<span class="hljs-function">
+  <span class="hljs-title">noLog</span> = <span class="hljs-params">(message)</span> -&gt;</span>
   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span>.<span class="hljs-number">.100</span>]
-    st = <span class="hljs-keyword">new</span> gameState.State().setUpWithOptions(ais, {<span class="hljs-attribute">log</span>: <span class="hljs-built_in">console</span>.warn, <span class="hljs-attribute">require</span>: [<span class="hljs-string">"King's Court"</span>]})
+    st = <span class="hljs-keyword">new</span> gameState.State().setUpWithOptions(ais, {log: <span class="hljs-built_in">console</span>.warn, require: []})
     <span class="hljs-keyword">until</span> st.gameIsOver()
       st.doPlay()
   test.done()</pre></div></div>
