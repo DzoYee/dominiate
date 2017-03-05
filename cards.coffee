@@ -3335,6 +3335,30 @@ makeCard 'Steward', action, {
     if my.actions > 0 then 1300 else -1
 }
 
+makeCard 'Squire', action, {
+  cost: 2
+  coins: +1
+  playEffect:
+    (state) ->
+      benefit = state.current.ai.choose('benefit', state, [
+        {actions: 2},
+        {buys: 2},
+        {gainSilver: yes}
+      ])
+      applyBenefit(state, benefit)
+
+  trashEffect: (state, player) ->
+    attacks = []
+    for card in state.filledPiles()
+      if (c[card].isAttack)
+        attacks.push(card);
+    choice = player.ai.choose('gain', state, attacks)
+    if choice
+      state.gainCard(player, c[choice])
+
+  ai_playValue: (state, my) -> 295
+}
+
 makeCard 'Throne Room', c["King's Court"], {
   cost: 4
   multiplier: 2
@@ -3745,6 +3769,7 @@ Array::unique = ->
 # - `{coins: n}`: get *+n* coins
 # - `{trash: n}`: trash *n* cards
 # - `{horseEffect: yes}`: gain 4 Silvers and discard your draw pile
+# - `{gainSilver: yes}`: gain 1 Silver
 #
 # The AI has no rule in it that chooses `horseEffect`.
 applyBenefit = (state, benefit) ->
@@ -3766,6 +3791,8 @@ applyBenefit = (state, benefit) ->
     state.current.discard = state.current.discard.concat(discards)
     state.current.draw = []
     state.handleDiscards(state.current, discards)
+  if benefit.gainSilver
+    state.gainCard(state.current, c.Silver)
 
 # `upgradeChoices` is a helper function to get a list of choices for
 # Remodel and similar "upgrading" cards. In addition to the game state, it

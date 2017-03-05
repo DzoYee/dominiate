@@ -1126,26 +1126,37 @@ class BasicAI
   # Nobles, this is the default way for an AI to decide which benefit it wants.
   # This function should actually handle a number of common situations.
   benefitValue: (state, choice, my) ->
-    buyValue = 1
-    cardValue = 2
-    coinValue = 3
-    trashValue = 4      # if there are cards we want to trash
-    actionValue = 10    # if we need more actions
-
     actionBalance = my.actionBalance()
     usableActions = Math.max(0, -actionBalance)
 
-    if actionBalance >= 1
-      cardValue += actionBalance
-    if my.ai.wantsToTrash(state) < (choice.trash ? 0)
-      trashValue = -4
-    
-    value = cardValue * (choice.cards ? 0)
-    value += coinValue * (choice.coins ? 0)
-    value += buyValue * (choice.buys ? 0)
-    value += trashValue * (choice.trash ? 0)
-    value += actionValue * Math.min((choice.actions ? 0), usableActions)
+    value = 0
+    value += this.benefitCardValue(state, my, choice.cards, actionBalance) if choice.cards
+    value += this.benefitCoinValue(state, my, choice.coins) if choice.coins
+    value += this.benefitBuyValue(state, my, choice.buys) if choice.buys
+    value += this.benefitTrashValue(state, my, choice.trash) if choice.trash
+    value += this.benefitActionValue(state, my, choice.actions, usableActions) if choice.actions
+    value += this.benefitHorseEffectValue(state, my) if choice.horseEffect
+    value += this.benefitGainSilverValue(state, my) if choice.gainSilver
     value
+
+  benefitBuyValue: (state, my, count) ->
+    1 * count
+  benefitCardValue: (state, my, count, actionBalance) ->
+    value = 2
+    value += actionBalance if actionBalance >= 1
+    value * count
+  benefitCoinValue: (state, my, count) ->
+    3 * count
+  benefitTrashValue: (state, my, count) ->
+    if my.ai.wantsToTrash(state) < count
+      return -4
+    4 * count
+  benefitActionValue: (state, my, count, usableActions) ->
+    10 * Math.min(count, usableActions)
+  benefitHorseEffectValue: (state, my) ->
+    0
+  benefitGainSilverValue: (state, my) ->
+    3
 
   # `wantsToTrash` returns the number of cards in hand that we would trash
   # for no benefit.
